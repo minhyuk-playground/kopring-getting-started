@@ -31,10 +31,8 @@ repositories {
     mavenCentral()
 }
 
-extra["snippetsDir"] = file("build/generated-snippets")
-
 dependencies {
-    // Spring
+    // SPRING
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -48,7 +46,7 @@ dependencies {
     implementation("com.querydsl:querydsl-jpa")
     kapt("com.querydsl:querydsl-apt:${dependencyManagement.importedProperties["querydsl.version"]}:jpa")
 
-    // api docs
+    // API DOCS
     asciidoctor("org.springframework.restdocs:spring-restdocs-asciidoctor")
 
     // ETC
@@ -57,12 +55,13 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 }
 
+extra["snippetsDir"] = file("build/generated-snippets")
+
 tasks {
-    compileKotlin {
-        kotlinOptions {
-            freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = "11"
-        }
+    asciidoctor {
+        configurations(asciidoctor.name)
+        inputs.dir(project.extra["snippetsDir"]!!)
+        dependsOn(test)
     }
 
     test {
@@ -70,16 +69,17 @@ tasks {
         outputs.dir(project.extra["snippetsDir"]!!)
     }
 
-    asciidoctor {
-        configurations(asciidoctor.name)
-        inputs.dir(project.extra["snippetsDir"]!!)
-        dependsOn(test)
-    }
-
     bootJar {
         dependsOn(asciidoctor)
         from("${asciidoctor.get().outputDir}") {
             into("static/docs")
+        }
+    }
+
+    compileKotlin {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = "11"
         }
     }
 }
