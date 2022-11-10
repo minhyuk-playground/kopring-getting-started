@@ -13,6 +13,7 @@ class Post(
     private var _content: Content,
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private var _status: PostStatus,
 
     @Id

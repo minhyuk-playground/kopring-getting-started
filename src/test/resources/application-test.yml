@@ -18,9 +18,3 @@ spring:
         default_batch_fetch_size: 500
         format_sql: true
         use_sql_comments: true
-
-  data:
-    web:
-      pageable:
-        max-page-size: 100
-        default-page-size: 20

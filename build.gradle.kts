@@ -42,12 +42,15 @@ dependencies {
 
     // DB
     runtimeOnly("com.h2database:h2")
-    runtimeOnly("com.mysql:mysql-connector-j")
     implementation("com.querydsl:querydsl-jpa")
     kapt("com.querydsl:querydsl-apt:${dependencyManagement.importedProperties["querydsl.version"]}:jpa")
 
     // API DOCS
     asciidoctor("org.springframework.restdocs:spring-restdocs-asciidoctor")
+
+    // TEST
+    testImplementation("io.kotest:kotest-runner-junit5:5.5.4")
+    testImplementation("io.kotest:kotest-extensions-spring:4.4.3")
 
     // ETC
     implementation("org.jetbrains.kotlin:kotlin-reflect")
