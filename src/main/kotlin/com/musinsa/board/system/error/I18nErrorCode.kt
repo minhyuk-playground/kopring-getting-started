@@ -14,4 +14,7 @@ enum class I18nErrorCode(val code: String) {
     DRAFT_NOT_FOUND("draft.not-found"),
 
     // Like Reaction
+    POST_LIKE_REACTION_NOT_FOUND("post-like-reaction.not-found"),
+    LIKED_POST_NOT_FOUND("post-like-reaction.liked-post.not-found"),
+    POST_LIKE_REACTION_DUPLICATE("post-like-reaction.duplicate")
 }
