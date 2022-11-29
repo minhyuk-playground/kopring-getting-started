@@ -18,8 +18,7 @@ class PostService(
     ): Page<Post> =
         postRepository.findAllByStatusIsNot(status = PostStatus.DELETED, pageable = pageable)
 
-    fun getPost(postId: Long): Post =
-        postRepository.findByIdOrNull(postId) ?: throw PostNotFoundException()
+    fun getPost(postId: Long): Post = postRepository.findById(postId)
 
     @Transactional
     fun publish(

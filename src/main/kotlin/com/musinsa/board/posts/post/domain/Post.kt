@@ -68,7 +68,7 @@ class Post(
         return result
     }
 
-    override fun toString(): String = "Post(author=$author, _content=$_content, _status=$_status)"
+    override fun toString(): String = "Post(author=$author, _content=$_content, _status=$_status, id=$id)"
 
     companion object {
         private const val DEFAULT_ID = 0L
