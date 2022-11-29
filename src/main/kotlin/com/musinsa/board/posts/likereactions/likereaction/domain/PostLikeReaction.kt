@@ -2,6 +2,7 @@ package com.musinsa.board.posts.likereactions.likereaction.domain
 
 import com.musinsa.board.sharing.domain.AggregateRoot
 import com.musinsa.board.sharing.domain.LongIdEntity
+import com.musinsa.board.sharing.domain.LongIdEntity.Companion.DEFAULT_ID
 import javax.persistence.*
 
 @Entity
@@ -43,9 +44,5 @@ class PostLikeReaction(
         var result = likeReactor.hashCode()
         result = 31 * result + likedPost.hashCode()
         return result
-    }
-
-    companion object {
-        private const val DEFAULT_ID = 0L
     }
 }

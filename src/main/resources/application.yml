@@ -24,3 +24,10 @@ spring:
       pageable:
         max-page-size: 100
         default-page-size: 20
+
+  task:
+    execution:
+      pool:
+        core-size: 5
+        max-size: 5
+        queue-capacity: 2147483647
